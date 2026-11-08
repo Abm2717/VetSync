@@ -48,7 +48,7 @@ describe('RegistrarConsultaMedicaUseCase', () => {
       {
         save: jest.fn(),
         findByMascotaId: jest.fn(),
-      } as unknown as jest.Mocked<RegistroMedicoRepository>;
+      };
 
     const mascotaRepositoryMock: jest.Mocked<MascotaRepository> = {
       findById: jest.fn(),
@@ -57,7 +57,7 @@ describe('RegistrarConsultaMedicaUseCase', () => {
 
     const veterinarioValidatorMock: jest.Mocked<VeterinarioValidator> = {
       verificar: jest.fn(),
-    } as unknown as jest.Mocked<VeterinarioValidator>;
+    };
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [

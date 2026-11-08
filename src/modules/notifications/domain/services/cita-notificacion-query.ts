@@ -5,9 +5,7 @@ export interface DatosNotificacion {
 }
 
 export interface CitaNotificacionQuery {
-  obtenerDatosParaNotificar(
-    citaId: string,
-  ): Promise<DatosNotificacion | null>;
+  obtenerDatosParaNotificar(citaId: string): Promise<DatosNotificacion | null>;
 
   /**
    * Resuelve los datos de notificación de todas las citas próximas

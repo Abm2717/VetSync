@@ -84,9 +84,7 @@ export class CitaNotificacionQueryAdapter implements CitaNotificacionQuery {
     const mascotaPorId = new Map(mascotas.map((m) => [m.id, m]));
 
     // 1 consulta para todos los dueños involucrados (sin duplicados).
-    const duenioIds = [
-      ...new Set(mascotas.map((mascota) => mascota.duenioId)),
-    ];
+    const duenioIds = [...new Set(mascotas.map((mascota) => mascota.duenioId))];
     const duenios = await this.usuarioRepository.findByIds(duenioIds);
     const duenioPorId = new Map(duenios.map((u) => [u.id, u]));
 

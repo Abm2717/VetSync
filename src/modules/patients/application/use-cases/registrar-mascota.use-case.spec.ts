@@ -33,7 +33,7 @@ describe('RegistrarMascotaUseCase', () => {
 
     const duenioValidatorMock: jest.Mocked<DuenioValidator> = {
       verificar: jest.fn(),
-    } as unknown as jest.Mocked<DuenioValidator>;
+    };
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -72,9 +72,7 @@ describe('RegistrarMascotaUseCase', () => {
 
       const resultado = await useCase.ejecutar(dtoBase);
 
-      expect(duenioValidator.verificar).toHaveBeenCalledWith(
-        dtoBase.duenioId,
-      );
+      expect(duenioValidator.verificar).toHaveBeenCalledWith(dtoBase.duenioId);
       expect(mascotaRepository.save).toHaveBeenCalledTimes(1);
       expect(mascotaRepository.save).toHaveBeenCalledWith(
         expect.objectContaining({

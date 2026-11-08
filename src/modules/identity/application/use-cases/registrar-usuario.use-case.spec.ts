@@ -29,7 +29,7 @@ describe('RegistrarUsuarioUseCase', () => {
     const passwordHasherMock: jest.Mocked<PasswordHasher> = {
       hashear: jest.fn(),
       comparar: jest.fn(),
-    } as unknown as jest.Mocked<PasswordHasher>;
+    };
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -130,9 +130,7 @@ describe('RegistrarUsuarioUseCase', () => {
 
       usuarioRepository.findByEmail.mockResolvedValue(null);
 
-      await expect(useCase.ejecutar(dto)).rejects.toThrow(
-        RolInvalidoException,
-      );
+      await expect(useCase.ejecutar(dto)).rejects.toThrow(RolInvalidoException);
       expect(passwordHasher.hashear).not.toHaveBeenCalled();
       expect(usuarioRepository.save).not.toHaveBeenCalled();
     });

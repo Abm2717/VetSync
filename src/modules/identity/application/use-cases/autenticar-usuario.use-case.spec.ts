@@ -33,7 +33,7 @@ describe('AutenticarUsuarioUseCase', () => {
 
     tokenGenerator = {
       generar: jest.fn(),
-    } as unknown as jest.Mocked<TokenGenerator>;
+    };
 
     useCase = new AutenticarUsuarioUseCase(
       usuarioRepository,

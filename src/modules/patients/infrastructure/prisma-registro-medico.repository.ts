@@ -5,9 +5,7 @@ import { RegistroMedico } from '../domain/entities/registro-medico.entity';
 import { RegistroMedicoRepository } from '../domain/repositories/registro-medico.repository';
 
 @Injectable()
-export class PrismaRegistroMedicoRepository
-  implements RegistroMedicoRepository
-{
+export class PrismaRegistroMedicoRepository implements RegistroMedicoRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async save(registro: RegistroMedico): Promise<RegistroMedico> {

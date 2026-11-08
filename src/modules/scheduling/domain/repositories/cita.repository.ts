@@ -6,12 +6,19 @@ import { Cita } from '../entities/cita.entity';
  */
 export interface CitaRepository {
   findById(id: string): Promise<Cita | null>;
-  findByVeterinarioYHorario(veterinarioId: string, fecha: Date): Promise<Cita | null>;
+  findByVeterinarioYHorario(
+    veterinarioId: string,
+    fecha: Date,
+  ): Promise<Cita | null>;
   /**
    * Igual que findByVeterinarioYHorario, pero excluye una cita por id del
    * chequeo — se usa al reagendar, para que la cita no choque consigo misma.
    */
-  existeConflictoHorario(veterinarioId: string, fecha: Date, excluirCitaId?: string): Promise<boolean>;
+  existeConflictoHorario(
+    veterinarioId: string,
+    fecha: Date,
+    excluirCitaId?: string,
+  ): Promise<boolean>;
   /**
    * Todas las citas no canceladas cuya fecha cae en [desde, hasta].
    * Pensado para procesos batch (p. ej. un cron de notificaciones) que

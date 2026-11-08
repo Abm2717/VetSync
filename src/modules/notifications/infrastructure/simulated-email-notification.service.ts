@@ -10,14 +10,13 @@ import {
  * etc.) solo se registra el envío en el log de la aplicación.
  */
 @Injectable()
-export class SimulatedEmailNotificationService
-  implements EmailNotificationService
-{
+export class SimulatedEmailNotificationService implements EmailNotificationService {
   private readonly logger = new Logger(SimulatedEmailNotificationService.name);
 
-  async enviar(payload: EmailNotificationPayload): Promise<void> {
+  enviar(payload: EmailNotificationPayload): Promise<void> {
     this.logger.log(
       `[EMAIL SIMULADO] Para: ${payload.to} | Asunto: ${payload.subject}\n${payload.body}`,
     );
+    return Promise.resolve();
   }
 }

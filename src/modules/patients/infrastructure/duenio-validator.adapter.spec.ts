@@ -35,7 +35,11 @@ describe('DuenioValidatorAdapter', () => {
 
   it('debe reportar esDuenio:false cuando el usuario existe pero no es OWNER', async () => {
     usuarioRepository.findById.mockResolvedValue(
-      new Usuario({ id: 'u-2', nombre: 'Dra. López', rol: RolUsuario.VETERINARIO }),
+      new Usuario({
+        id: 'u-2',
+        nombre: 'Dra. López',
+        rol: RolUsuario.VETERINARIO,
+      }),
     );
 
     const resultado = await adapter.verificar('u-2');

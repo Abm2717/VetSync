@@ -31,7 +31,7 @@ describe('ConsultarHistorialMedicoUseCase', () => {
       {
         save: jest.fn(),
         findByMascotaId: jest.fn(),
-      } as unknown as jest.Mocked<RegistroMedicoRepository>;
+      };
 
     const mascotaRepositoryMock: jest.Mocked<MascotaRepository> = {
       findById: jest.fn(),

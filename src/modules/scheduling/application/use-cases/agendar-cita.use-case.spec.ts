@@ -41,11 +41,11 @@ describe('AgendarCitaUseCase', () => {
 
     const mascotaValidatorMock: jest.Mocked<MascotaValidator> = {
       existe: jest.fn(),
-    } as unknown as jest.Mocked<MascotaValidator>;
+    };
 
     const veterinarioValidatorMock: jest.Mocked<VeterinarioValidator> = {
       existe: jest.fn(),
-    } as unknown as jest.Mocked<VeterinarioValidator>;
+    };
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [

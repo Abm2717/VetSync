@@ -60,9 +60,9 @@ describe('CancelarCitaUseCase', () => {
     const citaPasada = crearCita({ fecha: new Date(Date.now() - UN_DIA_MS) });
     citaRepository.findById.mockResolvedValue(citaPasada);
 
-    await expect(
-      useCase.ejecutar({ citaId: citaPasada.id }),
-    ).rejects.toThrow(CitaYaFinalizadaException);
+    await expect(useCase.ejecutar({ citaId: citaPasada.id })).rejects.toThrow(
+      CitaYaFinalizadaException,
+    );
 
     expect(citaRepository.save).not.toHaveBeenCalled();
   });

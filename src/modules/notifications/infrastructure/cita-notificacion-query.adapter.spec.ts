@@ -1,18 +1,9 @@
 import { CitaNotificacionQueryAdapter } from './cita-notificacion-query.adapter';
-import {
-  CitaRepository,
-} from '../../scheduling/domain/repositories/cita.repository';
-import {
-  Cita,
-  EstadoCita,
-} from '../../scheduling/domain/entities/cita.entity';
-import {
-  MascotaRepository,
-} from '../../patients/domain/repositories/mascota.repository';
+import { CitaRepository } from '../../scheduling/domain/repositories/cita.repository';
+import { Cita, EstadoCita } from '../../scheduling/domain/entities/cita.entity';
+import { MascotaRepository } from '../../patients/domain/repositories/mascota.repository';
 import { Mascota } from '../../patients/domain/entities/mascota.entity';
-import {
-  UsuarioRepository,
-} from '../../identity/domain/repositories/usuario.repository';
+import { UsuarioRepository } from '../../identity/domain/repositories/usuario.repository';
 import { Usuario } from '../../identity/domain/entities/usuario.entity';
 import { RolUsuario } from '../../identity/domain/value-objects/rol-usuario.enum';
 
@@ -170,8 +161,16 @@ describe('CitaNotificacionQueryAdapter', () => {
       expect(usuarioRepository.findByIds).toHaveBeenCalledTimes(1);
       expect(usuarioRepository.findByIds).toHaveBeenCalledWith(['duenio-1']);
       expect(resultado).toEqual([
-        { citaId: 'cita-1', fecha: cita1.fecha, emailDuenio: 'duenio@example.com' },
-        { citaId: 'cita-2', fecha: cita2.fecha, emailDuenio: 'duenio@example.com' },
+        {
+          citaId: 'cita-1',
+          fecha: cita1.fecha,
+          emailDuenio: 'duenio@example.com',
+        },
+        {
+          citaId: 'cita-2',
+          fecha: cita2.fecha,
+          emailDuenio: 'duenio@example.com',
+        },
       ]);
     });
 
@@ -184,9 +183,7 @@ describe('CitaNotificacionQueryAdapter', () => {
         estado: EstadoCita.PROGRAMADA,
       });
 
-      citaRepository.findProximasEnVentana.mockResolvedValue([
-        citaSinMascota,
-      ]);
+      citaRepository.findProximasEnVentana.mockResolvedValue([citaSinMascota]);
       mascotaRepository.findByIds.mockResolvedValue([]); // no se encontró
       usuarioRepository.findByIds.mockResolvedValue([]);
 

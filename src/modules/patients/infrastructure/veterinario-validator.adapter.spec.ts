@@ -25,7 +25,11 @@ describe('VeterinarioValidatorAdapter', () => {
 
   it('debe reportar esVeterinario:true cuando el usuario existe y es VETERINARIO', async () => {
     usuarioRepository.findById.mockResolvedValue(
-      new Usuario({ id: 'v-1', nombre: 'Dra. López', rol: RolUsuario.VETERINARIO }),
+      new Usuario({
+        id: 'v-1',
+        nombre: 'Dra. López',
+        rol: RolUsuario.VETERINARIO,
+      }),
     );
 
     const resultado = await adapter.verificar('v-1');

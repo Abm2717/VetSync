@@ -21,7 +21,7 @@ describe('EnviarNotificacionCitaUseCase', () => {
 
     const emailServiceMock: jest.Mocked<EmailNotificationService> = {
       enviar: jest.fn(),
-    } as unknown as jest.Mocked<EmailNotificationService>;
+    };
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -49,9 +49,7 @@ describe('EnviarNotificacionCitaUseCase', () => {
 
     await useCase.ejecutar('cita-1');
 
-    expect(citaQuery.obtenerDatosParaNotificar).toHaveBeenCalledWith(
-      'cita-1',
-    );
+    expect(citaQuery.obtenerDatosParaNotificar).toHaveBeenCalledWith('cita-1');
     expect(emailService.enviar).toHaveBeenCalledTimes(1);
     expect(emailService.enviar).toHaveBeenCalledWith(
       expect.objectContaining({ to: 'duenio@example.com' }),
