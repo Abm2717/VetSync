@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Rol {
+  OWNER
+  VETERINARIO
+}
+
+enum EstadoCita {
+  PROGRAMADA
+  CANCELADA
+  COMPLETADA
+}
+
+model Usuario {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  nombre    String
+  rol       Rol
+  password  String?
+  createdAt DateTime @default(now())
+
+  mascotas         Mascota[] // si es dueño
+  citas            Cita[] // si es veterinario
+  registrosMedicos RegistroMedico[] // si es veterinario
+}
+
+model Mascota {
+  id              String   @id @default(uuid())
+  nombre          String
+  especie         String
+  raza            String
+  fechaNacimiento DateTime
+  duenioId        String
+  duenio          Usuario  @relation(fields: [duenioId], references: [id])
+  citas           Cita[]
+  registrosMedicos RegistroMedico[]
+}
+
+model Cita {
+  id            String     @id @default(uuid())
+  fechaHora     DateTime
+  mascotaId     String
+  mascota       Mascota    @relation(fields: [mascotaId], references: [id])
+  veterinarioId String
+  veterinario   Usuario    @relation(fields: [veterinarioId], references: [id])
+  estado        EstadoCita @default(PROGRAMADA)
+  createdAt     DateTime   @default(now())
+
+  @@index([veterinarioId, fechaHora]) // acelera la validación de choque de horario
+}
+
+model RegistroMedico {
+  id            String   @id @default(uuid())
+  mascotaId     String
+  mascota       Mascota  @relation(fields: [mascotaId], references: [id])
+  veterinarioId String
+  veterinario   Usuario  @relation(fields: [veterinarioId], references: [id])
+  diagnostico   String
+  tratamiento   String?
+  notas         String?
+  fecha         DateTime @default(now())
+
+  @@index([mascotaId])
+}
