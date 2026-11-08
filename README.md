@@ -148,6 +148,3 @@ Ver `API.md` para el detalle de cada endpoint: método, ruta, body, respuesta y 
 5. El módulo de notificaciones es simulado: solo escribe en el log de la aplicación, no envía correos reales ni existe un scheduler que lo dispare automáticamente.
 6. La prevención de choque de horario depende de una verificación a nivel de aplicación, no de una restricción a nivel de base de datos, por lo que existe una ventana teórica de condición de carrera bajo alta concurrencia.
 
-## Autor
-
-Camacho. Estudiante de Ingeniería de Software (ISW), Sonora, México.
